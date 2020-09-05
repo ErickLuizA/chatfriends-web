@@ -1,0 +1,35 @@
+.container {
+  text-align: left;
+  margin: 10px;
+}
+
+.userContainer {
+  text-align: right;
+  margin: 10px;
+}
+
+.wrapper {
+  background-color: var(--background);
+  border: 2px solid var(--text);
+  border-radius: 5px;
+  color: var(--text);
+  display: inline-block;
+  padding: 5px;
+  width: 50%;
+}
+
+.userName {
+  display: block;
+  text-align: left;
+  font-size: small;
+}
+
+.message {
+  padding: 5px 0 0 5px;
+  color: var(--primary);
+  white-space: normal;
+}
+
+.time {
+  font-size: small;
+}

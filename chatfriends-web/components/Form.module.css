@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  height: 80%;
+}
+
+.orange {
+  color: var(--primary);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--primary);
+  color: var(--text);
+
+  padding: 1em 2em;
+  margin-bottom: 1em;
+
+  outline: none;
+}
+
+.googleButton {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--text);
+
+  padding: 0.2em 0.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  outline: none;
+
+  font-size: 1em;
+
+  cursor: pointer;
+}
+
+.googleButton:hover {
+  background-color: var(--hover-background);
+  color: var(--hover-text);
+}
+
+.icon {
+  vertical-align: middle;
+  padding-right: 1em;
+}
+
+.button {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--text);
+
+  padding: 0.5em 2em;
+
+  font-size: 1em;
+
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+.button:hover {
+  background-color: var(--hover-background);
+  color: var(--hover-text);
+}
+
+.error {
+  font-size: 0.7em;
+  color: #f21;
+  margin-bottom: 10px;
+}

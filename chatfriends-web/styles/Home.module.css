@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+.orange {
+  color: var(--primary);
+}
+.align {
+  text-align: center;
+}
+
+.buttonContainer {
+  padding: 2em;
+}
+
+.buttonLogin {
+  padding: 0.5em 2.5em;
+  margin-right: 0.5em;
+
+  cursor: pointer;
+
+  background-color: var(--primary);
+  color: var(--onPrimaryText);
+
+  font-size: 1em;
+}
+
+.buttonLogin:hover {
+  background-color: var(--hover-background);
+  color: var(--hover-text);
+}
+
+.buttonRegister {
+  padding: 0.5em 2em;
+  margin-left: 0.5em;
+
+  cursor: pointer;
+
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--text);
+
+  font-size: 1em;
+}
+
+.buttonRegister:hover {
+  background-color: var(--hover-background);
+  color: var(--hover-text);
+}

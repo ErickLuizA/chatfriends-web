@@ -1,0 +1,16 @@
+.container {
+  background-color: transparent;
+  margin-top: 1em;
+  margin-right: 2em;
+  padding: 10px;
+  width: 85%;
+  color: var(--text);
+  border: 2px solid var(--primary);
+  cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .container {
+    width: 90%;
+  }
+}

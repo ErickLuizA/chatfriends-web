@@ -1,0 +1,39 @@
+.displayFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.orange {
+  color: var(--primary);
+}
+
+.push {
+  margin-left: 30px;
+}
+
+.link {
+  font-size: 1.3rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.link:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 520px) {
+  .displayFlex {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .push {
+    margin: auto;
+    margin-top: 1em;
+  }
+}
