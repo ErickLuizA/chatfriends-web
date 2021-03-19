@@ -1,11 +1,13 @@
 import { useContext } from 'react'
+
 import { AuthContext } from '../context/authContext'
+
 import styles from './Card.module.css'
 
 interface ICard {
-  msgUser
-  message
-  time
+  msgUser: string
+  message: string
+  time: string
 }
 
 const Card: React.FC<ICard> = ({ msgUser, message, time }) => {

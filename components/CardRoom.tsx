@@ -1,7 +1,7 @@
 import styles from './CardRoom.module.css'
 
 interface ICardRoom {
-  onClick(): void
+  onClick: () => void
   name: string
 }
 

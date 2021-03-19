@@ -1,12 +1,13 @@
 import firebase from '../config/fire-config'
 import { createContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { User } from 'firebase'
+import { User } from 'firebase/auth'
+
 
 interface AuthProps {
   signed: boolean
   user: User
-  signOut(): void
+  signOut: () => void
 }
 
 const AuthContext = createContext({} as AuthProps)

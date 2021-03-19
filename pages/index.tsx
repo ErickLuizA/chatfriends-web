@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import Header from '../components/Header'
-import Layout from '../components/Layout'
 
 import styles from '../styles/Home.module.css'
+
+import Header from '../components/Header'
+import Layout from '../components/Layout'
 
 const Home: React.FC = () => {
   return (

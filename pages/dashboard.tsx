@@ -1,14 +1,17 @@
-import { FormEvent, useContext, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useRef, useState } from 'react'
+
 import { AuthContext } from '../context/authContext'
-import Layout from '../components/Layout'
-import Header from '../components/Header'
+
 import Firebase from '../config/fire-config'
-import Card from '../components/Card'
 
 import styles from '../styles/Dashboard.module.css'
-import CardRoom from '../components/CardRoom'
 
-interface IMessages {
+import CardRoom from '../components/CardRoom'
+import Layout from '../components/Layout'
+import Header from '../components/Header'
+import Card from '../components/Card'
+
+interface IMessage {
   user: string
   message: string
   timestamp: number
@@ -17,64 +20,72 @@ interface IMessages {
 const Dashboard: React.FC = () => {
   const { user } = useContext(AuthContext)
 
-  const [messages, setMessages] = useState<IMessages[]>([])
   const [rooms, setRooms] = useState([])
+  const [currentRoom, setCurrentRoom] = useState('')
 
-  const [room, setRoom] = useState('global')
+  const [messages, setMessages] = useState<IMessage[]>([])
+
   const [message, setMessage] = useState('')
-  const [roomName, setRoomName] = useState('')
 
-  const messagesRef = Firebase.database().ref('chatrooms')
+  const [newRoomName, setNewRoomName] = useState('')
 
-  useEffect(() => {
-    ;(async () => {
-      messagesRef.on('value', snapshot => {
-        let array = []
-        for (let key in snapshot.val()) {
-          array.push(key)
-        }
-        setRooms(array)
-      })
+  const messagesEndRef = useRef(null)
 
-      messagesRef.child(room).on('value', snapshot => {
-        let data = snapshot.val()
+  const roomsCollection = Firebase.firestore().collection('rooms')
 
-        let msgs = []
-        for (let key in data) {
-          msgs.push(data[key])
-        }
+  const handleCreateRoom = async (e: FormEvent) => {
+    e.preventDefault()
 
-        if (msgs.length > 0) {
-          setMessages(msgs)
-        } else {
-          setMessages([])
-        }
-      })
-    })()
-  }, [room])
+    roomsCollection.doc(newRoomName).set({})
 
-  const handleChangeRoom = (newRoom: string) => {
-    setRoom(newRoom)
+    handleChangeRoom(newRoomName)
+
+    setNewRoomName('')
   }
 
-  const handleCreateRoom = (e: FormEvent) => {
-    e.preventDefault()
-    messagesRef.child(roomName).set('')
-    setRoomName('')
+  useEffect(() => {
+    (async () => {
+      const result = await roomsCollection.get()
+
+      let array = []
+
+      result.docs.forEach(doc => {
+        array.push(doc.id)
+      })
+
+      setRooms(array)
+    })()
+  }, [handleCreateRoom])
+
+  const handleChangeRoom = (newRoom: string) => {
+    setCurrentRoom(newRoom)
+    setMessages([])
+
+    roomsCollection.doc(newRoom).collection('messages').orderBy('timestamp', 'asc').onSnapshot(snapshot => {
+      let array: IMessage[] = []
+
+      snapshot.docs.forEach(doc => {
+        const data = doc.data() as IMessage
+
+        array.push(data)
+      })
+
+      setMessages(array)
+
+      messagesEndRef.current?.scrollIntoView({behavior: 'smooth'})
+    })
   }
 
   const handleSendMessage = async (e: FormEvent) => {
     e.preventDefault()
-    messagesRef.child(room).push({
+
+    roomsCollection.doc(currentRoom).collection('messages').add({
       message,
       user: user.displayName,
       timestamp: new Date().getTime()
     })
-    setMessage('')
 
-    const chat = document.querySelector('#chatContainer')
-    chat.scrollTop = chat.scrollHeight
-    // chat.scrollTo(0, chat.scrollHeight)
+    setMessage('')
   }
 
   return (
@@ -85,8 +96,8 @@ const Dashboard: React.FC = () => {
           <form onSubmit={handleCreateRoom}>
             <input
               type="text"
-              value={roomName}
-              onChange={e => setRoomName(e.target.value)}
+              value={newRoomName}
+              onChange={e => setNewRoomName(e.target.value)}
               placeholder="Create a new room"
               className={styles.newRoomInput}
             />
@@ -116,6 +127,7 @@ const Dashboard: React.FC = () => {
                 />
               )
             })}
+            <div ref={messagesEndRef} />
           <form onSubmit={handleSendMessage}>
             <input
               type="text"
