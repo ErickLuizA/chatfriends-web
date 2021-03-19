@@ -23,7 +23,8 @@
   <a href="#clipboard-description">Description</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#building_construction-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-license">License</a>
+  <a href="#memo-license">License</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#framed_picture-screenshots">Screenshots</a>
 </p>
 
 ## :clipboard: Description
@@ -72,8 +73,15 @@ $ npm install
 $ npm run dev
 ```
 
-## :information_source: TODO
-  - Implement tests
+
+## :framed_picture: Screenshots
+
+<div>
+  <img alt="SkyKow icon" src="./.github/home.png"  width="600"/>
+  <img alt="SkyKow icon" src="./.github/signin.png"  width="600"/>
+  <img alt="SkyKow icon" src="./.github/signup.png"  width="600"/>
+  <img alt="SkyKow icon" src="./.github/chat.png"  width="600"/>
+</div>
 
 ## :memo: License
 
