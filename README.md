@@ -72,8 +72,6 @@ $ npm install
 $ npm run dev
 ```
 
-> [Live Demo](https://chat-friends.vercel.app/)
-
 ## :information_source: TODO
   - Implement tests
 
