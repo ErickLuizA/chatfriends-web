@@ -63,21 +63,19 @@ chatfriends is a chat app built with Nextjs and firebase.
 $ cd chatfriends-web
 
 # Install dependencies
-$ yarn install
+$ npm install
 ```
 
 ## 3. Execution
 
 ```shell
-$ yarn dev
+$ npm run dev
 ```
 
 > [Live Demo](https://chat-friends.vercel.app/)
 
 ## :information_source: TODO
   - Implement tests
-  - Fix bugs
-
 
 ## :memo: License
 
